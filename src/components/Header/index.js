@@ -3,7 +3,10 @@ import React from 'react';
 let styles = {
     backgroundColor: "DodgerBlue",
     display: "flex",
-    justify: "centered"
+    justifyContent: "center",
+    padding: "25px",
+    marginBottom: "20px",
+    color: "white"
 }
 
 class Header extends React.Component {
