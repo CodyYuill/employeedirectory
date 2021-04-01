@@ -18,7 +18,7 @@ class EmployeeList extends React.Component {
                         <b className="col-lg-2">DOB</b>
                     </div>
                 </li>
-                <li className="list-group-item"><EmployeeCard /></li>
+                <EmployeeCard image="image" name="First Last" email="email@email.com" phone="(111)111-1111" dob="11/11/1111"/>
             </ul>
         );
     }
