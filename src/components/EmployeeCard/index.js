@@ -6,7 +6,7 @@ class EmployeeCard extends React.Component {
         return (
             <li className="list-group-item">
                 <div className="row">
-                    <p className="col-lg-2">{this.props.image}</p>
+                    <img alt="" src={this.props.image} className="col-lg-2"></img>
                     <p className="col-lg-2">{this.props.name}</p>
                     <p className="col-lg-3">{this.props.email}</p>
                     <p className="col-lg-3">{this.props.phone}</p>
