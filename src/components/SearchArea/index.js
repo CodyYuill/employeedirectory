@@ -33,7 +33,7 @@ class SearchArea extends React.Component {
     }
 
     render() {
-        console.log(this.state.employees[0]);
+        //console.log(this.state.employees[0]);
 
         return (
             <div className="container">

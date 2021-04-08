@@ -4,7 +4,8 @@ import EmployeeCard from '../EmployeeCard';
 
 let styles = {
     textAlign: "center"
-}
+} 
+
 
 class EmployeeList extends React.Component {
 
@@ -21,7 +22,17 @@ class EmployeeList extends React.Component {
                             <b className="col-lg-2">DOB</b>
                         </div>
                     </li>
-                    <EmployeeCard image={this.props.employees[0].picture.large} name={this.props.employees[0].name.first + " " +this.props.employees[0].name.last} email={this.props.employees[0].email} phone={this.props.employees[0].phone} dob={this.props.employees[0].dob.date} />
+                    {/* <EmployeeCard image={this.props.employees[0].picture.large} name={this.props.employees[0].name.first + " " +this.props.employees[0].name.last} email={this.props.employees[0].email} phone={this.props.employees[0].phone} dob={this.props.employees[0].dob.date} /> */}
+                    {this.props.employees.map((employee, index) => (
+                        <EmployeeCard 
+                            image={employee.picture.large}
+                            name={employee.name.first + " " + employee.name.last}
+                            email={employee.email}
+                            phone={employee.phone}
+                            dob={employee.dob.date}
+                            key={index}
+                        />
+                    ))}
                 </ul>
             );
         }else{
