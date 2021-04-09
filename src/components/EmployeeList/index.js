@@ -36,7 +36,7 @@ class EmployeeList extends React.Component {
                 </ul>
             );
         }else{
-            return <>Searching...</>
+            return <>Employee not found</>
         }
     }
 }
