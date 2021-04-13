@@ -14,7 +14,8 @@ let styles = {
 class SearchArea extends React.Component {
 
     state = {
-        employees: []
+        employees: [],
+        originalList: []
     };
 
     componentDidMount() {
@@ -22,10 +23,18 @@ class SearchArea extends React.Component {
         //console.log(this.state.employees);
     }
 
+    // function
+    sortArr(a, b) {
+        var textA = a.name.first.toUpperCase();
+        var textB = b.name.first.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    }
+
     getEmployees = () => {
         this.search().then(res => {
-            this.setState({employees: res.data.results})
-            //console.log(this.state.employees);
+            res.data.results.sort(this.sortArr);
+            this.setState({...this.state, employees: res.data.results, originalList: res.data.results})
+            console.log(this.state.originalList);
         }).catch(err => console.log(err));
     };
 
@@ -49,9 +58,9 @@ class SearchArea extends React.Component {
                     return false;
                 }
             });
-            this.setState({employees: filteredEmployees});
+            this.setState({...this.state, employees: filteredEmployees});
         } else{
-            this.getEmployees();
+            this.setState({...this.state, employees: this.state.originalList})
         }
         console.log(this.state.employees);
     }
