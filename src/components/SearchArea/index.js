@@ -71,7 +71,7 @@ class SearchArea extends React.Component {
         return (
             <div className="container">
                 <form className="input-group mb-3" style={styles}>
-                    <input type="text" className="form-control"aria-describedby="button-addon2" placeholder="Search by name, email, etc.trsac"onChange={this.handleInputChange}/>
+                    <input type="text" className="form-control"aria-describedby="button-addon2" placeholder="Search by name, email, etc."onChange={this.handleInputChange}/>
                     {/* <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button> */}
                 </form>
                 <EmployeeList employees={this.state.employees}/> 
