@@ -16,10 +16,10 @@ class EmployeeList extends React.Component {
                     <li className="list-group-item">
                         <div className="row">
                             <b className="col-lg-2">Image</b>
-                            <b className="col-lg-2">Name</b>
-                            <b className="col-lg-3">Email</b>
-                            <b className="col-lg-3">Phone</b>
-                            <b className="col-lg-2">DOB</b>
+                            <b className="col-lg-2" onClick={this.props.filterChange} id="name">Name</b>
+                            <b className="col-lg-3" onClick={this.props.filterChange} id="email">Email</b>
+                            <b className="col-lg-3" onClick={this.props.filterChange} id="phone">Phone</b>
+                            <b className="col-lg-2" onClick={this.props.filterChange} id="dob">DOB</b>
                         </div>
                     </li>
                     {/* <EmployeeCard image={this.props.employees[0].picture.large} name={this.props.employees[0].name.first + " " +this.props.employees[0].name.last} email={this.props.employees[0].email} phone={this.props.employees[0].phone} dob={this.props.employees[0].dob.date} /> */}

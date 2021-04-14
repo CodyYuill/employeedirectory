@@ -23,16 +23,11 @@ class SearchArea extends React.Component {
         //console.log(this.state.employees);
     }
 
-    // function
-    sortArr(a, b) {
-        var textA = a.name.first.toUpperCase();
-        var textB = b.name.first.toUpperCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    }
-
     getEmployees = () => {
         this.search().then(res => {
-            res.data.results.sort(this.sortArr);
+            res.data.results.sort((a, b)=>(a.name.first.toLowerCase() > b.name.first.toLowerCase()) ? 1 : ((a.name.first.toLowerCase() < b.name.first.toLowerCase()) ? -1 : 0));
+
+            //res.data.results.sort(this.sortArr);
             this.setState({...this.state, employees: res.data.results, originalList: res.data.results})
             console.log(this.state.originalList);
         }).catch(err => console.log(err));
@@ -62,7 +57,31 @@ class SearchArea extends React.Component {
         } else{
             this.setState({...this.state, employees: this.state.originalList})
         }
-        console.log(this.state.employees);
+        //console.log(this.state.employees);
+    }
+
+    handleFilterChange = event => {
+        var newList = [];
+        switch(event.target.id){
+            case("name"):
+                newList = this.state.originalList.sort((a, b)=>(a.name.first.toLowerCase() > b.name.first.toLowerCase()) ? 1 : ((a.name.first.toLowerCase() < b.name.first.toLowerCase()) ? -1 : 0));
+                this.setState({...this.state, employees: newList})
+                break;
+            case("email"):
+                newList = this.state.originalList.sort((a, b)=>(a.email.toLowerCase() > b.email.toLowerCase()) ? 1 : ((a.email.toLowerCase() < b.email.toLowerCase()) ? -1 : 0));
+                this.setState({...this.state, employees: newList})
+                break;
+            case("phone"):
+                newList = this.state.originalList.sort((a, b)=>(a.phone.toLowerCase() > b.phone.toLowerCase()) ? 1 : ((a.phone.toLowerCase() < b.phone.toLowerCase()) ? -1 : 0));
+                this.setState({...this.state, employees: newList})
+                break;
+            case("dob"):
+                newList = this.state.originalList.sort((a, b)=>(a.dob.date.toLowerCase() > b.dob.date.toLowerCase()) ? 1 : ((a.dob.date.toLowerCase() < b.dob.date.toLowerCase()) ? -1 : 0));
+                this.setState({...this.state, employees: newList})
+                break;
+            default:
+                console.log("no filter value");
+        }
     }
 
     render() {
@@ -72,9 +91,8 @@ class SearchArea extends React.Component {
             <div className="container">
                 <form className="input-group mb-3" style={styles}>
                     <input type="text" className="form-control"aria-describedby="button-addon2" placeholder="Search by name, email, etc."onChange={this.handleInputChange}/>
-                    {/* <button className="btn btn-outline-secondary" type="button" id="button-addon2">Search</button> */}
                 </form>
-                <EmployeeList employees={this.state.employees}/> 
+                <EmployeeList employees={this.state.employees} filterChange={this.handleFilterChange}/> 
             </div>
         );
     }
